@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  font-family: 'Roboto';
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  :root {
+    --background: 241, 1%, 4%;
+    --foreground: 0 0% 90%;
+    --secondary-background: 244, 2%, 8%;
+    --secondary-background-foreground: 0 0% 90%;
+    --card: 240, 30%, 8%;
+    --card-foreground: 0 0% 90%;
+    --primary: 227, 72%, 18%;
+    --primary-foreground: 0 0% 90%;
+    --secondary: 227, 69%, 30%;
+    --secondary-foreground: 0 0% 90%;
+    --success: 227, 98%, 56%;
+    --success-foreground: 0 0% 90%;
+    --success-hover: 227, 98%, 33%;
+    --success-hover-foreground: 0 0% 90%;
+    --destructive: 358, 94%, 52%;
+    --destructive-foreground: 0 0% 90%;
+    --destructive-hover: 354, 98%, 41%;
+    --destructive-hover-foreground: 0 0% 90%;
+    --mutted: 233, 17%, 19%;
+    --mutted-foreground: 0 0% 90%;
+    --netral: 0, 6%, 93%;
+    --netral-foreground: 0 0% 90%;
+    --netral-hover: 217, 18%, 58%;
+    --netral-hover-foreground: 0 0% 90%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+  }
+  
+  
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+}
