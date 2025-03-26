@@ -3,7 +3,7 @@ import RootLayout from "./RootLayout";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Modular Base App",
+  title: "Modular Dashboard App",
   description: "Develop with Nextjs framework",
 };
 

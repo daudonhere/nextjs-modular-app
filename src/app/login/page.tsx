@@ -5,9 +5,8 @@ import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useStatusStore } from '@/store/useStatusStore';
-import LoadingComponent from '@/components/Loading';
+import { LinearLoadingComponent, CircularLoadingComponent} from '@/components/Loading';
 import Toast from '@/components/Toast';
-import Spinner from '@/components/SmallSpinner';
 import GridMotion from '@/components/GridMotion';
 import { motion } from 'framer-motion';
 import useAnimationComponents from '@/hooks/useAnimation';
@@ -34,12 +33,13 @@ export default function LoginScreen() {
 
   useEffect(() => {
     if (isAuthenticated) {
+      setLoading(true);
       setTimeout(() => {
-        setLoading(true);
         setTimeout(() => router.push("/"), 1000);
+        setLoading(false);
       }, 1500);
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, router, setLoading]);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -87,7 +87,7 @@ export default function LoginScreen() {
         className="absolute w-full max-w-md bg-secondaryB p-8 rounded-xl shadow-lg z-20"
       >
         {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
-        <LoadingComponent isLoading={isLoading} />
+          {isLoading && <LinearLoadingComponent />}
         <h2 className="text-3xl font-semibold text-center mb-6">Login</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
@@ -124,11 +124,11 @@ export default function LoginScreen() {
             disabled={loadingButton}
             className="w-full bg-success hover:bg-successH text-netral py-2 rounded-lg font-semibold transition"
           >
-            {loadingButton ? <Spinner /> : 'Login'}
+            {loadingButton ? <CircularLoadingComponent/> : 'Login'}
           </button>
         </form>
         <p className="mt-4 text-center text-netral">
-          Don't have an account ? <a href="/register" className="text-success hover:underline">Register</a>
+          Don&lsquo;t have an account ? <a href="/register" className="text-success hover:underline">Register</a>
         </p>
       </motion.div>
     </motion.div>

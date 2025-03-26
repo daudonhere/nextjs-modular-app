@@ -5,13 +5,12 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/useUserStore";
 import { useRoleStore } from "@/store/useRoleStore";
 import { useStatusStore } from "@/store/useStatusStore";
-import LoadingComponent from "@/components/Loading";
+import { LinearLoadingComponent, CircularLoadingComponent } from "@/components/Loading";
 import { Eye, EyeOff } from 'lucide-react';
 import Toast from "@/components/Toast";
 import { ChevronDown } from "lucide-react";
 import { UserTypes } from "@/types/User";
 import { motion } from "framer-motion";
-import Spinner from '@/components/SmallSpinner';
 import GridMotion from "@/components/GridMotion";
 import useAnimationComponents from "@/hooks/useAnimation";
 
@@ -46,9 +45,10 @@ export default function Register() {
 
   useEffect(() => {
     if (roles.length === 0) {
-      fetchAllRoles();
+      setLoading(true);
+      fetchAllRoles().finally(() => setLoading(false));
     }
-  }, [fetchAllRoles, roles.length]);
+  }, [fetchAllRoles, roles.length, setLoading]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -99,7 +99,7 @@ export default function Register() {
         className="absolute w-full max-w-md bg-secondaryB p-8 rounded-xl shadow-lg z-20"
       >
         {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
-        <LoadingComponent isLoading={isLoading} />
+        {isLoading && <LinearLoadingComponent />}
         <h2 className="text-3xl font-semibold text-center mb-6">Register</h2>
         <form onSubmit={handleRegister}>
           <div className="mb-4">
@@ -169,7 +169,7 @@ export default function Register() {
             disabled={loadingButton}
             className="w-full bg-success hover:bg-successH text-netral py-2 rounded-lg font-semibold transition"
           >
-            {loadingButton ? <Spinner /> : "Register"}
+            {loadingButton ? <CircularLoadingComponent /> : "Register"}
           </button>
         </form>
         <p className="mt-4 text-center text-netral">

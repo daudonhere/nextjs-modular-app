@@ -17,7 +17,7 @@ export default function Toast({ message, type = 'success', onClose }: ToastProps
     const timer = setTimeout(() => {
       setShow(false);
       onClose();
-    }, 2000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [onClose]);
@@ -31,8 +31,8 @@ export default function Toast({ message, type = 'success', onClose }: ToastProps
           transition={{ duration: 0.8}}
           animate={rightControls}
           variants={rightVariants}
-          className={`flex px-4 fixed bottom-5 right-5 bg-secondaryB min-w-80 h-16 items-center justify-between rounded-md shadow-lg transition-opacity duration-300 ${
-            type === 'success' ? 'text-netral' : 'text-destructive'
+          className={`flex px-4 text-netral fixed bottom-5 right-5 min-w-80 h-20 items-center justify-between rounded-md shadow-lg transition-opacity duration-500 ${
+            type === 'success' ? 'bg-success' : 'bg-destructive'
           }`}
       >
         <span>{message}</span>

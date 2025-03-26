@@ -2,20 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import useAnimationComponents from '@/hooks/useAnimation';
+import { motion } from 'framer-motion';
 import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useRoleStore } from "@/store/useRoleStore";
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { useModuleStore } from "@/store/useModuleStore";
 import { useStatusStore } from "@/store/useStatusStore";
-import Spinner from '@/components/SmallSpinner';
-import { motion } from 'framer-motion';
-import useAnimationComponents from '@/hooks/useAnimation';
-import { 
-  LayoutDashboard, Package, ChevronDown,
-  ChevronUp, Component, Settings, Settings2,
-  X, LogIn, LogOut, UserCog
-   } from 'lucide-react';
+import { CircularLoadingComponent } from "@/components/Loading";
+import { LayoutDashboard, Package, ChevronDown, ChevronUp, Component, Settings, Settings2, X, LogIn, LogOut, UserCog } from 'lucide-react';
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -25,14 +21,15 @@ const Sidebar = () => {
   const { activeModules, fetchAllModules, fetchActiveModules, resetModule } = useModuleStore();
   const { ref, leftControls, leftVariants } = useAnimationComponents();
   const { role, roles, userRole, userRoles, fetchRole, fetchRoles, fetchUserRole, resetRoles } = useRoleStore();
-  const [hasFetchedRoles, setHasFetchedRoles] = useState(false);
-  const [loadingButton, setLoadingButton] = useState(false);
+  const [ hasFetchedRoles, setHasFetchedRoles ] = useState(false);
+  const [ loadingButton, setLoadingButton ] = useState(false);
   const { isLoading, setLoading } = useStatusStore();
-  const [openDropdowns, setOpenDropdowns] = useState<Record<number, boolean>>({});
+  const [ openDropdowns, setOpenDropdowns ] = useState<Record<number, boolean>>({});
   const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
   const isAdmin = role?.rolename === "administrator" || roles?.some(r => r.rolename === "administrator");
   const isAdminManager = ["administrator", "manager"].includes(role?.rolename ?? "") || 
-    roles?.some(r => ["administrator", "manager"].includes(r.rolename ?? ""));
+    roles?.some(r => ["administrator", "manager"].includes(r.rolename ?? "")
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +39,7 @@ const Sidebar = () => {
           await fetchUserRole(Number(userId));
         }
         if (!hasFetchedRoles && (userRole || (userRoles && userRoles.length > 0))) {
-          let roleIds: number[] = userRoles ? userRoles.map(r => r.role) : [userRole?.role ?? 0];
+          const roleIds: number[] = userRoles ? userRoles.map(r => r.role) : [userRole?.role ?? 0];
           if (roleIds.length === 1) await fetchRole(roleIds[0]);
           else if (roleIds.length > 1) await fetchRoles(roleIds);
           setHasFetchedRoles(true);
@@ -55,7 +52,17 @@ const Sidebar = () => {
       }
     };
     fetchData();
-  }, [userId, userRole, JSON.stringify(userRoles), hasFetchedRoles]);
+  }, [userId,
+      userRole, 
+      hasFetchedRoles, 
+      setLoading, 
+      userRoles, 
+      fetchAllModules, 
+      fetchActiveModules, 
+      fetchUserRole, 
+      fetchRole, 
+      fetchRoles
+    ]);
 
   const handleLogout = async () => {
     try {
@@ -109,7 +116,7 @@ const Sidebar = () => {
         </div>
         {isLoading ? (
           <div className="flex flex-1 justify-center items-center">
-            <Spinner/>
+            <CircularLoadingComponent />
           </div>
         ) : (
           <nav>
@@ -189,7 +196,7 @@ const Sidebar = () => {
                       disabled={loadingButton}
                       className="w-full flex text-md font-semibold font-roboto px-4 py-2 text-left hover:text-netralH"
                     >
-                        {loadingButton ? <Spinner /> : "Logout"}
+                        {loadingButton ? <CircularLoadingComponent /> : "Logout"}
                     </button>
                   </div>
                 ) : (
@@ -200,7 +207,7 @@ const Sidebar = () => {
                       disabled={loadingButton}
                       className="w-full flex text-md font-semibold font-roboto px-4 py-2 hover:text-netralH"
                     >
-                        {loadingButton ? <Spinner /> : "Login"}
+                        {loadingButton ? <CircularLoadingComponent /> : "Login"}
                     </button>
                   </div>
                 )}
