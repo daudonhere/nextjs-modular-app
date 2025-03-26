@@ -11,7 +11,7 @@ import Spinner from '@/components/Spinner';
 import DetailModal from "./components/DetailModal";
 import DeleteModal from "./components/DeleteModal";
 
-export default function Content() {
+export default function UserPage() {
   const { setIsOpen } = useSidebarStore();
   const { user, users, fetchAllUsers, fetchUser } = useUserStore();
   const { roles, userRolesMap, fetchUsersRoles } = useRoleStore();

@@ -2,14 +2,12 @@
 
 import React from "react";
 import Sidebar from "@/components/Sidebar";
-import Content from "./content";
 
-export default function Modules() {
-
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="relative flex h-screen">
             <Sidebar />
-            <Content />
+            <div className="flex-1">{children}</div>
         </div>
     );
 }

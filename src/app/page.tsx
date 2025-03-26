@@ -1,11 +1,6 @@
-"use client";
-import React from "react";
-import MainPage from './mainpage/page';
+import { redirect } from "next/navigation";
 
-export default function Page() {
-  return (
-    <React.Fragment>
-      <MainPage/>
-    </React.Fragment>
-  );
+export default function HomePage() {
+    redirect("/dashboard");
+    return null;
 }

@@ -173,10 +173,10 @@ const Sidebar = () => {
                   <Link href="/module" className="w-full px-3 py-2 text-md justify-center font-semibold font-roboto hover:text-netralH">Modules Setting</Link>
                 </li>
                 <li className={`flex flex-row items-center px-4 ml-2 h-12 text-netral
-                  ${pathname === "/user" ? "text-netralH rounded-l-sm border-l-2 border-netral" : ""}`}
+                  ${pathname === "/dashboard/user" ? "text-netralH rounded-l-sm border-l-2 border-netral" : ""}`}
                 >
                   <UserCog color="#eeeef8" />
-                  <Link href="/user" className="w-full px-3 py-2 text-md justify-center font-semibold font-roboto hover:text-netralH">Users Setting</Link>
+                  <Link href="/dashboard/user" className="w-full px-3 py-2 text-md justify-center font-semibold font-roboto hover:text-netralH">Users Setting</Link>
                 </li>
               </ul>
             )}

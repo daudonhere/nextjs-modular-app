@@ -9,7 +9,7 @@ import { useStatusStore } from "@/store/useStatusStore";
 import { ModuleTypes } from "@/types/Module";
 import Spinner from "@/components/Spinner";
 
-export default function Content() {
+export default function DashboardPage() {
   const { ref, rightControls, rightVariants } = useAnimationComponents();
   const { setIsOpen } = useSidebarStore();
   const { isLoading } = useStatusStore();
