@@ -6,8 +6,8 @@ import { useRoleStore } from "@/store/useRoleStore";
 import { UserTypes } from "@/types/User";
 import { RoleTypes } from "@/types/Role";
 import Toast from "@/components/Toast";
-import Spinner from "@/components/Spinner";
-import useAnimationComponents from '@/services/useAnimation';
+import Spinner from "@/components/SmallSpinner";
+import useAnimationComponents from '@/hooks/useAnimation';
 
 interface UpdateModalProps {
   user: UserTypes;

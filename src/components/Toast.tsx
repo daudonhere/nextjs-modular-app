@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import useAnimationComponents from '@/services/useAnimation';
+import useAnimationComponents from '@/hooks/useAnimation';
 import { X } from 'lucide-react';
 
 interface ToastProps {

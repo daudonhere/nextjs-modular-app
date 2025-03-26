@@ -11,9 +11,9 @@ import Toast from "@/components/Toast";
 import { ChevronDown } from "lucide-react";
 import { UserTypes } from "@/types/User";
 import { motion } from "framer-motion";
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/SmallSpinner';
 import GridMotion from "@/components/GridMotion";
-import useAnimationComponents from "@/services/useAnimation";
+import useAnimationComponents from "@/hooks/useAnimation";
 
 
 const items = [

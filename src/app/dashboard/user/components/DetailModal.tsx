@@ -5,7 +5,7 @@ import { UserTypes } from "@/types/User";
 import UpdateModal from "./UpdateModal";
 import DeleteModal from "./DeleteModal";
 import Toast from "@/components/Toast";
-import useAnimationComponents from "@/services/useAnimation";
+import useAnimationComponents from "@/hooks/useAnimation";
 
 interface DetailModalProps {
   user: UserTypes | null;

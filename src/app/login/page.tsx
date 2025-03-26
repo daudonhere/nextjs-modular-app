@@ -7,10 +7,10 @@ import { useAuthStore } from '@/store/useAuthStore';
 import { useStatusStore } from '@/store/useStatusStore';
 import LoadingComponent from '@/components/Loading';
 import Toast from '@/components/Toast';
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/SmallSpinner';
 import GridMotion from '@/components/GridMotion';
 import { motion } from 'framer-motion';
-import useAnimationComponents from '@/services/useAnimation';
+import useAnimationComponents from '@/hooks/useAnimation';
 
 const items = [
   'TYPESCRIPT', 'MODULAR', 'https://www.svgrepo.com/show/374032/reactjs.svg', 'PYTHON', 'ENGINE',

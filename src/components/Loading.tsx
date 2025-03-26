@@ -16,7 +16,7 @@ export default function LoadingComponent({ isLoading }: LoadingComponentProps) {
           transition={{ duration: 0.5 }}
           style={{ pointerEvents: isLoading ? "auto" : "none" }}
         >
-            <ThreeDot color="#2641de" size="large" />
+            <ThreeDot color="#2641de" size="medium" />
         </motion.div>
   );
 }

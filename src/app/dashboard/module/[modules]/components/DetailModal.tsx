@@ -5,7 +5,7 @@ import { useRoleStore } from "@/store/useRoleStore";
 import { ProductTypes } from "@/types/Product";
 import UpdateModal from "./UpdateModal";
 import DeleteModal from "./DeleteModal";
-import useAnimationComponents from "@/services/useAnimation";
+import useAnimationComponents from "@/hooks/useAnimation";
 
 interface DetailModalProps {
   product: ProductTypes | null;

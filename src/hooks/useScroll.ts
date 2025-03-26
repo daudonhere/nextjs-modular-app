@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useScroll = () => {
+const useScrollComponents = () => {
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
@@ -19,4 +19,4 @@ const useScroll = () => {
   return isVisible;
 };
 
-export default useScroll;
+export default useScrollComponents;

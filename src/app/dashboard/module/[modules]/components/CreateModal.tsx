@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProductStore } from "@/store/useProductStore";
-import useAnimationComponents from '@/services/useAnimation';
+import useAnimationComponents from '@/hooks/useAnimation';
 import Toast from "@/components/Toast";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/components/SmallSpinner";
 
 export default function CreateModal({ onClose }: { onClose: () => void }) {
   const { fetchAllProducts, createProduct } = useProductStore();

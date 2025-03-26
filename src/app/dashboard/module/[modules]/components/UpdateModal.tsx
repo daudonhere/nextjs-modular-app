@@ -3,8 +3,8 @@ import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProductStore } from "@/store/useProductStore";
 import { ProductTypes } from "@/types/Product";
-import useAnimationComponents from '@/services/useAnimation';
-import Spinner from "@/components/Spinner";
+import useAnimationComponents from '@/hooks/useAnimation';
+import Spinner from "@/components/SmallSpinner";
 import Toast from "@/components/Toast";
 
 interface UpdateModalProps {

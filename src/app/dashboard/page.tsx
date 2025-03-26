@@ -2,12 +2,12 @@
 
 import React from "react";
 import { motion } from 'framer-motion';
-import useAnimationComponents from '@/services/useAnimation';
+import useAnimationComponents from '@/hooks/useAnimation';
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { useModuleStore } from "@/store/useModuleStore";
 import { useStatusStore } from "@/store/useStatusStore";
 import { ModuleTypes } from "@/types/Module";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/components/SmallSpinner";
 
 export default function DashboardPage() {
   const { ref, rightControls, rightVariants } = useAnimationComponents();

@@ -7,8 +7,8 @@ import { useModuleStore } from "@/store/useModuleStore";
 import { ModuleTypes } from "@/types/Module";
 import Toast from '@/components/Toast';
 import { motion } from 'framer-motion';
-import useAnimationComponents from '@/services/useAnimation';
-import Spinner from '@/components/Spinner';
+import useAnimationComponents from '@/hooks/useAnimation';
+import Spinner from '@/components/SmallSpinner';
 
 export default function ModuleSettingPage() {
   const { setIsOpen } = useSidebarStore();

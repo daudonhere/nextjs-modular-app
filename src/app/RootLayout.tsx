@@ -1,7 +1,7 @@
 "use client";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import LoadingComponent from "@/components/Loading";
-import useLoading from "@/services/useLoading";
+import useLoading from "@/hooks/useLoading";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const loading = useLoading();

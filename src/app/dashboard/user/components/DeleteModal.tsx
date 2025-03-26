@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import { X } from "lucide-react";
 import { motion } from 'framer-motion';
-import useAnimationComponents from '@/services/useAnimation';
+import useAnimationComponents from '@/hooks/useAnimation';
 import { useUserStore } from "@/store/useUserStore";
 import Toast from "@/components/Toast";
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/SmallSpinner';
 
 interface DeleteModalProps {
   userId?: number;

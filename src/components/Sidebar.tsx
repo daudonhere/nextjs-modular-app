@@ -8,9 +8,9 @@ import { useRoleStore } from "@/store/useRoleStore";
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { useModuleStore } from "@/store/useModuleStore";
 import { useStatusStore } from "@/store/useStatusStore";
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/SmallSpinner';
 import { motion } from 'framer-motion';
-import useAnimationComponents from '@/services/useAnimation';
+import useAnimationComponents from '@/hooks/useAnimation';
 import { 
   LayoutDashboard, Package, ChevronDown,
   ChevronUp, Component, Settings, Settings2,

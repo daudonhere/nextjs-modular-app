@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
-import useAnimationComponents from '@/services/useAnimation';
+import useAnimationComponents from '@/hooks/useAnimation';
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { useProductStore } from "@/store/useProductStore";
 import Toast from "@/components/Toast";
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/SmallSpinner';
 import DeleteModal from './components/DeleteModal';
 import RestoreModal from './components/RestoreModal';
 

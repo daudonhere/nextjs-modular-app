@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-const useLoading = () => {
+const useLoadingComponents = () => {
     const [loading, setLoading] = useState(false);
     const pathname = usePathname();
 
@@ -19,4 +19,4 @@ const useLoading = () => {
     return loading;
 };
 
-export default useLoading;
+export default useLoadingComponents;
