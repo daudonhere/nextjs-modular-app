@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import useAnimationComponents from '@/services/useAnimation';
 import Spinner from '@/components/Spinner';
 
-export default function Content() {
+export default function ModuleSettingPage() {
   const { setIsOpen } = useSidebarStore();
   const { 
     modules: rawModules, fetchAllModules, fetchActiveModules,
@@ -132,7 +132,7 @@ export default function Content() {
                 <tr key={module.id} className="border border-mutted">
                   <td className="p-3 border border-mutted text-center">{index + 1}</td>
                   <td className="p-3 border border-mutted text-center">{module.name}</td>
-                  <td className={`p-3 border border-mutted text-center font-medium ${module.installed ? "text-green-400" : "text-red-400"}`}>
+                  <td className={`p-3 border border-mutted text-center font-medium ${module.installed ? "text-success" : "text-destructive"}`}>
                     {module.installed ? "Active" : "Inactive"}
                   </td>
                   <td className="p-3 border border-mutted text-center">{module.version}</td>

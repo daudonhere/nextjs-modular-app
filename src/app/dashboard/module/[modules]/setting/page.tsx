@@ -10,7 +10,7 @@ import Spinner from '@/components/Spinner';
 import DeleteModal from './components/DeleteModal';
 import RestoreModal from './components/RestoreModal';
 
-export default function Content() {
+export default function ModuleSettingPage() {
   const { setIsOpen } = useSidebarStore();
   const { all_products, fetchAllProducts } = useProductStore();
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);

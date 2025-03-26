@@ -13,7 +13,7 @@ import CreateModal from './components/CreateModal';
 import DetailModal from './components/DetailModal';
 import DeleteModal from './components/DeleteModal';
 
-export default function Content() {
+export default function ModulePage() {
   const { setIsOpen } = useSidebarStore();
   const { product, all_products, fetchAllProducts, fetchProduct } = useProductStore();
   const { isAuthenticated } = useAuthStore();

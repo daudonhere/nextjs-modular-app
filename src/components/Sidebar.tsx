@@ -115,16 +115,16 @@ const Sidebar = () => {
           <nav>
             <ul className="space-y-2 gap-8">
               <li className={`flex flex-row items-center px-4 ml-2 h-12 text-netral
-                ${pathname === "/" ? "text-netralH rounded-l-sm border-l-2 border-netral" : ""}`}
+                ${pathname === "/dashboard" ? "text-netralH rounded-l-sm border-l-2 border-netral" : ""}`}
               >
                 <LayoutDashboard color="#eeeef8" />
-                <Link href="/" className="w-full px-3 py-2 text-md justify-center font-semibold font-roboto hover:text-netralH">Dashboard</Link>
+                <Link href="/dashboard" className="w-full px-3 py-2 text-md justify-center font-semibold font-roboto hover:text-netralH">Dashboard</Link>
               </li>
 
               {Array.isArray(activeModules) && activeModules.map((module) => (
                 <li key={module.id}>
                   <div className={`flex flex-row items-center px-4 ml-2 h-12 text-netral
-                    ${pathname === `/module/${module.name}` || pathname === `/module/${module.name}/setting` 
+                    ${pathname === `/dashboard/module/${module.name}` || pathname === `/dashboard/module/${module.name}/setting` 
                       ? "text-netralH rounded-l-sm border-l-2 border-netral" : ""}`}
                   >
                     <Package color="#eeeef8" />
@@ -132,7 +132,7 @@ const Sidebar = () => {
                       onClick={() => toggleDropdown(module.id)}
                       className={`
                         w-full flex justify-between text-md font-semibold font-roboto items-center px-4 py-2 text-left hover:text-netralH
-                        ${pathname === `/module/${module.name}` ? "text-netralH " : ""}`}
+                        ${pathname === `/dashboard/module/${module.name}` ? "text-netralH " : ""}`}
                     >
                         {capitalize(module.name)}
                       <span>{openDropdowns[module.id] ? <ChevronUp color="#eeeef8" size={20}/> : <ChevronDown color="#eeeef8" size={20}/>}</span>
@@ -141,19 +141,19 @@ const Sidebar = () => {
                   {openDropdowns[module.id] && (
                     <ul className="space-y-2 py-2 gap-8">
                       <li className={`flex flex-row items-center px-4 ml-6 h-12 text-netral
-                        ${pathname === `/module/${module.name}` ? "text-netralH" : ""}`}
+                        ${pathname === `/dashboard/module/${module.name}` ? "text-netralH" : ""}`}
                       >
                         <Component color="#eeeef8"/>
-                        <Link href={`/module/${module.name}`} className="w-full px-3 py-2 text-sm justify-center font-semibold font-roboto hover:text-netralH">
+                        <Link href={`/dashboard/module/${module.name}`} className="w-full px-3 py-2 text-sm justify-center font-semibold font-roboto hover:text-netralH">
                           {capitalize(module.name)} List
                         </Link>
                       </li>
                       {isAdminManager && (
                         <li className={`flex flex-row items-center px-4 ml-6 h-12 text-netral
-                          ${pathname === `/module/${module.name}/setting` ? "text-netralH" : ""}`}
+                          ${pathname === `/dashboard/module/${module.name}/setting` ? "text-netralH" : ""}`}
                         >
                           <Settings color="#eeeef8"/>
-                          <Link href={`/module/${module.name}/setting`} className="w-full px-3 py-2 text-sm justify-center font-semibold font-roboto hover:text-netralH">
+                          <Link href={`/dashboard/module/${module.name}/setting`} className="w-full px-3 py-2 text-sm justify-center font-semibold font-roboto hover:text-netralH">
                           {capitalize(module.name)} Setting
                           </Link>
                         </li>
@@ -167,10 +167,10 @@ const Sidebar = () => {
             {isAdmin && !isLoading && (
               <ul className="space-y-2 gap-8">
                 <li className={`flex flex-row items-center px-4 ml-2 h-12 text-netral
-                  ${pathname === "/module" ? "text-netralH rounded-l-sm border-l-2 border-netral" : ""}`}
+                  ${pathname === "/dashboard/module" ? "text-netralH rounded-l-sm border-l-2 border-netral" : ""}`}
                 >
                   <Settings2 color="#eeeef8" />
-                  <Link href="/module" className="w-full px-3 py-2 text-md justify-center font-semibold font-roboto hover:text-netralH">Modules Setting</Link>
+                  <Link href="/dashboard/module" className="w-full px-3 py-2 text-md justify-center font-semibold font-roboto hover:text-netralH">Modules Setting</Link>
                 </li>
                 <li className={`flex flex-row items-center px-4 ml-2 h-12 text-netral
                   ${pathname === "/dashboard/user" ? "text-netralH rounded-l-sm border-l-2 border-netral" : ""}`}
