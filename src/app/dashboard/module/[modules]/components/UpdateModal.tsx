@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useProductStore } from "@/store/useProductStore";
 import { ProductTypes } from "@/types/Product";
 import useAnimationComponents from '@/hooks/useAnimation';
-import Spinner from "@/components/SmallSpinner";
+import { CircularLoadingComponent } from "@/components/Loading";
 import Toast from "@/components/Toast";
 
 interface UpdateModalProps {
@@ -105,7 +105,7 @@ export default function UpdateModal({ product, onClose }: UpdateModalProps) {
               type="submit" 
               className="px-6 py-2 min-w-24 bg-success text-netral font-roboto font-semibold rounded hover:bg-successH transition"
             >
-              {loadingButton ? <Spinner /> : 'Save'}
+              {loadingButton ? <CircularLoadingComponent /> : 'Save'}
             </button>
           </div>
         </form>

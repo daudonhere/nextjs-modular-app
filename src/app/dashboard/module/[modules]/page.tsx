@@ -8,7 +8,7 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { motion } from 'framer-motion';
 import useAnimationComponents from '@/hooks/useAnimation';
 import Toast from "@/components/Toast";
-import Spinner from '@/components/SmallSpinner';
+import { CircularLoadingComponent } from "@/components/Loading";
 import CreateModal from './components/CreateModal';
 import DetailModal from './components/DetailModal';
 import DeleteModal from './components/DeleteModal';
@@ -43,7 +43,7 @@ export default function ModulePage() {
       setFetchingData(false);
     };
     fetchProducts();
-  }, []);
+  }, [fetchAllProducts]);
 
   const handleShowCreate = () => {
     setIsCreateModalOpen(true);
@@ -112,7 +112,7 @@ export default function ModulePage() {
               {all_products.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="p-6 text-netral text-center">
-                    {fetchingData ? <Spinner /> : "No product listed here"}
+                    {fetchingData ? <CircularLoadingComponent /> : "No product listed here"}
                   </td>
                 </tr>
               ) : (
@@ -129,7 +129,7 @@ export default function ModulePage() {
                           onClick={() => handleShowDetail(product.id)}
                           className="h-8 min-w-full text-sm font-semibold font-roboto text-center px-4 rounded bg-success hover:bg-successH text-netral"
                         >
-                          {loadingButton === product.id ? <Spinner /> : 'Detail'}
+                          {loadingButton === product.id ? <CircularLoadingComponent /> : 'Detail'}
                         </button>
                       </td>
                     )}
@@ -159,9 +159,7 @@ export default function ModulePage() {
       </section>
 
       {isCreateModalOpen && <CreateModal onClose={() => setIsCreateModalOpen(false)} />}
-      {isDetailModalOpen && product && (
-        <DetailModal product={product} onClose={() => setIsDetailModalOpen(false)} />
-      )}
+      {isDetailModalOpen && product && selectedProductId !== null && <DetailModal product={product} onClose={() => setIsDetailModalOpen(false)} />}
       {isDeleteModalOpen && <DeleteModal onClose={() => setIsDeleteModalOpen(false)} />}
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
     </motion.div>

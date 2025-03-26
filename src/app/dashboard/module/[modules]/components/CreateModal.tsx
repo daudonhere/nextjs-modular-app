@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useProductStore } from "@/store/useProductStore";
 import useAnimationComponents from '@/hooks/useAnimation';
 import Toast from "@/components/Toast";
-import Spinner from "@/components/SmallSpinner";
+import { CircularLoadingComponent } from "@/components/Loading";
 
 export default function CreateModal({ onClose }: { onClose: () => void }) {
   const { fetchAllProducts, createProduct } = useProductStore();
@@ -115,7 +115,7 @@ export default function CreateModal({ onClose }: { onClose: () => void }) {
               type="submit" 
               className="px-6 py-2 min-w-24 bg-success text-netral font-roboto font-semibold rounded hover:bg-successH transition"
             >
-              {loadingButton ? <Spinner /> : 'Create'}
+              {loadingButton ? <CircularLoadingComponent /> : 'Create'}
             </button>
           </div>
         </form>

@@ -7,7 +7,7 @@ import { useSidebarStore } from "@/store/useSidebarStore";
 import { useUserStore } from "@/store/useUserStore";
 import { useRoleStore } from "@/store/useRoleStore";
 import Toast from "@/components/Toast";
-import Spinner from '@/components/SmallSpinner';
+import { CircularLoadingComponent } from "@/components/Loading";
 import DetailModal from "./components/DetailModal";
 import DeleteModal from "./components/DeleteModal";
 
@@ -29,6 +29,7 @@ export default function UserPage() {
   const paginatedUsers = users.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
   const { ref, rightControls, rightVariants } = useAnimationComponents();
 
+
   useEffect(() => {
     const fetchUsers = async () => {
       setFetchingData(true);
@@ -36,7 +37,7 @@ export default function UserPage() {
       setFetchingData(false);
     };
     fetchUsers();
-  }, []);
+  }, [fetchAllUsers]);
   
   useEffect(() => {
     if (users.length > 0) {
@@ -56,7 +57,7 @@ export default function UserPage() {
           });
       }
     }
-  }, [JSON.stringify(users)]);  
+  }, [fetchUsersRoles, users]);  
 
   const getUserRoles = (userId: number) => {
     if (!roles || !userRolesMap || !(userId in userRolesMap)) {
@@ -111,7 +112,7 @@ export default function UserPage() {
               {users.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="p-6 text-netral text-center">
-                    {fetchingData ? <Spinner /> : "No users listed here"}
+                    {fetchingData ? <CircularLoadingComponent /> : "No users listed here"}
                   </td>
                 </tr>
               ) : (
@@ -120,7 +121,7 @@ export default function UserPage() {
                     <td className="p-3 border border-mutted text-center">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                     <td className="p-3 border border-mutted text-center">{user.username}</td>
                     <td className="p-3 border border-mutted text-center">{user.email}</td>
-                    <td className="p-3 border border-mutted text-center">{loadingRoles ? <Spinner /> : getUserRoles(user.id)}</td>
+                    <td className="p-3 border border-mutted text-center">{loadingRoles ? <CircularLoadingComponent /> : getUserRoles(user.id)}</td>
                     <td className="p-3 border border-mutted text-center">{user.is_active ? "Active" : "Inactive"}</td>
                     <td className="p-3 border border-mutted text-center">
                       <button
@@ -128,7 +129,7 @@ export default function UserPage() {
                         onClick={() => handleShowDetail(user.id)}
                         className="h-8 min-w-full text-sm font-semibold font-roboto text-center px-4 rounded bg-success hover:bg-successH text-netral"
                       >
-                        {loadingButton === user.id ? <Spinner /> : 'Detail'}
+                        {loadingButton === user.id ? <CircularLoadingComponent /> : 'Detail'}
                       </button>
                     </td>
                   </tr>
@@ -155,7 +156,7 @@ export default function UserPage() {
           </button>
         </div>
       </section>
-      {isDetailModalOpen && user && <DetailModal user={user} onClose={() => setIsDetailModalOpen(false)} />}
+      {isDetailModalOpen && user && selectedUserId !== null && <DetailModal user={user} onClose={() => setIsDetailModalOpen(false)} />}
       {isDeleteModalOpen && <DeleteModal onClose={() => setIsDeleteModalOpen(false)} />}
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
     </motion.div>

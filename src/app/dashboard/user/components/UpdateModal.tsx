@@ -6,7 +6,7 @@ import { useRoleStore } from "@/store/useRoleStore";
 import { UserTypes } from "@/types/User";
 import { RoleTypes } from "@/types/Role";
 import Toast from "@/components/Toast";
-import Spinner from "@/components/SmallSpinner";
+import { CircularLoadingComponent } from "@/components/Loading";
 import useAnimationComponents from '@/hooks/useAnimation';
 
 interface UpdateModalProps {
@@ -140,7 +140,7 @@ export default function UpdateModal({ user, onClose }: UpdateModalProps) {
           </div>
           <div className="mt-6 flex justify-end">
             <button type="submit" className="px-6 py-2 min-w-24 bg-success text-netral font-roboto font-semibold rounded hover:bg-successH transition">
-              {loadingButton ? <Spinner /> : "Update"}
+              {loadingButton ? <CircularLoadingComponent /> : "Update"}
             </button>
           </div>
         </form>

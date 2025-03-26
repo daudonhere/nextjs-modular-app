@@ -8,7 +8,7 @@ import { ModuleTypes } from "@/types/Module";
 import Toast from '@/components/Toast';
 import { motion } from 'framer-motion';
 import useAnimationComponents from '@/hooks/useAnimation';
-import Spinner from '@/components/SmallSpinner';
+import { CircularLoadingComponent } from "@/components/Loading";
 
 export default function ModuleSettingPage() {
   const { setIsOpen } = useSidebarStore();
@@ -124,7 +124,7 @@ export default function ModuleSettingPage() {
             {modules.length === 0 ? (
               <tr>
                 <td colSpan={6} className="p-6 text-netral text-center">
-                  {modules.length === 0 ? <Spinner /> : "No module listed here"}
+                  {modules.length === 0 ? <CircularLoadingComponent /> : "No module listed here"}
                 </td>
               </tr>
             ) : (
@@ -148,7 +148,7 @@ export default function ModuleSettingPage() {
                         onClick={() => handleUninstall(module.id)}
                         className="h-8 min-w-24 text-center text-sm font-roboto font-semibold px-4 rounded bg-destructive hover:bg-destructiveH text-netral w-full sm:w-auto"
                       >
-                        {loadingInstall ? <Spinner/> : 'Uninstall'}
+                        {loadingInstall ? <CircularLoadingComponent/> : 'Uninstall'}
                       </button>
                     ) : (
                       <button
@@ -156,7 +156,7 @@ export default function ModuleSettingPage() {
                         onClick={() => handleInstall(module.id)}
                         className="h-8 min-w-24 text-center text-sm font-roboto font-semibold px-4 rounded bg-success hover:bg-successH text-netral w-full sm:w-auto"
                       >
-                        {loadingInstall ? <Spinner/> : 'Install'}
+                        {loadingInstall ? <CircularLoadingComponent/> : 'Install'}
                       </button>
                     )}
                     <button
@@ -164,7 +164,7 @@ export default function ModuleSettingPage() {
                       onClick={() => handleUpgrade(module.id)}
                       className="h-8 min-w-24 text-center text-sm font-roboto font-semibold px-4 rounded bg-success hover:bg-successH text-netral w-full sm:w-auto"
                     >
-                      {loadingUpgrade ? <Spinner/> : 'Upgrade'}
+                      {loadingUpgrade ? <CircularLoadingComponent/> : 'Upgrade'}
                     </button>
                   </td>
                 </tr>

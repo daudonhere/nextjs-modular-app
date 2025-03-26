@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import useAnimationComponents from '@/hooks/useAnimation';
 import { useUserStore } from "@/store/useUserStore";
 import Toast from "@/components/Toast";
-import Spinner from '@/components/SmallSpinner';
+import { CircularLoadingComponent } from "@/components/Loading";
 
 interface DeleteModalProps {
   userId?: number;
@@ -62,7 +62,7 @@ export default function DeleteModal({ userId, onClose }: DeleteModalProps) {
             onClick={handleDelete} 
             className="px-6 py-2 min-w-24 bg-destructive text-netral text-md font-semibold font-roboto rounded hover:bg-destructiveH transition"
           >
-            {loadingButton ? <Spinner /> : 'Confirm'}
+            {loadingButton ? <CircularLoadingComponent /> : 'Confirm'}
           </button>
         </div>
       </div>

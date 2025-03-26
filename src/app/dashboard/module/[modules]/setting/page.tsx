@@ -6,7 +6,7 @@ import useAnimationComponents from '@/hooks/useAnimation';
 import { useSidebarStore } from "@/store/useSidebarStore";
 import { useProductStore } from "@/store/useProductStore";
 import Toast from "@/components/Toast";
-import Spinner from '@/components/SmallSpinner';
+import { CircularLoadingComponent } from "@/components/Loading";
 import DeleteModal from './components/DeleteModal';
 import RestoreModal from './components/RestoreModal';
 
@@ -36,7 +36,7 @@ export default function ModuleSettingPage() {
       setFetchingData(false);
     };
     fetchProducts();
-  }, []);
+  }, [fetchAllProducts]);
 
   const handleShowDelete = (id?: number) => {
     setDeleteProductId(id);
@@ -85,7 +85,7 @@ export default function ModuleSettingPage() {
                 {paginatedProducts.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="p-6 text-netral text-center">
-                      {fetchingData ? <Spinner /> : "No product listed here"}
+                      {fetchingData ? <CircularLoadingComponent /> : "No product listed here"}
                     </td>
                   </tr>
                 ) : (

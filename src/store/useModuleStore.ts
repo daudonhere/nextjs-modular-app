@@ -43,8 +43,11 @@ export const useModuleStore = create<ModuleState>((set) => ({
         headers: { Authorization: `Token ${token}` },
       });
       set({ modules: response.data.data || [] });
-    } catch (error) {
-      setError("Failed Fetching All Module");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed fetching all modlue";
+      setError(errorMessage);
     }
   },
 
@@ -54,8 +57,11 @@ export const useModuleStore = create<ModuleState>((set) => ({
     try {
       const response = await axios.get<ModuleApiResponse<ModuleTypes[]>>(GET_ACTIVE_MODULES_API);
       set({ activeModules: response.data.data || [] });
-    } catch (error) {
-      setError("Failed Fetching Active Module");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed fetching active module";
+      setError(errorMessage);
     }
   },
 
@@ -68,8 +74,11 @@ export const useModuleStore = create<ModuleState>((set) => ({
         headers: { Authorization: `Token ${token}` },
       });
       set((state) => ({ modules: [...state.modules, response.data.data] }));
-    } catch (error) {
-      setError("Failed Fetching Module");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed fetching module";
+      setError(errorMessage);
     }
   },
 
@@ -83,8 +92,11 @@ export const useModuleStore = create<ModuleState>((set) => ({
       });
       const response = await axios.get<ModuleApiResponse<ModuleTypes[]>>(GET_ACTIVE_MODULES_API);
       set({ activeModules: response.data.data || [] });
-    } catch (error) {
-      setError("Failed Install Module");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed install module";
+      setError(errorMessage);
     }
   },
 
@@ -98,8 +110,11 @@ export const useModuleStore = create<ModuleState>((set) => ({
       });
       const response = await axios.get<ModuleApiResponse<ModuleTypes[]>>(GET_ACTIVE_MODULES_API);
       set({ activeModules: response.data.data || [] });
-    } catch (error) {
-      setError("Failed Uninstall Module");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed uninstall module";
+      setError(errorMessage);
     }
   },
 
@@ -113,8 +128,11 @@ export const useModuleStore = create<ModuleState>((set) => ({
       });
       const response = await axios.get<ModuleApiResponse<ModuleTypes[]>>(GET_ACTIVE_MODULES_API);
       set({ activeModules: response.data.data || [] });
-    } catch (error) {
-      setError("Failed Upgrade Module");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed upgrade module";
+      setError(errorMessage);
     }
   }
 }));

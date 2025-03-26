@@ -42,9 +42,13 @@ export const useProductStore = create<ProductState>((set) => ({
     try {
       const response = await axios.get<ProductApiResponse<ProductTypes[]>>(GET_ALL_PRODUCTS_API);
       set({ all_products: response.data.data || [] });
-    } catch (error) {
+  
+    } catch (error: unknown) {
       set({ all_products: [] });
-      setError("Failed to fetch products");
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed fetch all product";
+      setError(errorMessage);
     }
   },
 
@@ -58,8 +62,11 @@ export const useProductStore = create<ProductState>((set) => ({
         headers: { Authorization: `Token ${token}` },
       });
       set({ product: response.data.data });
-    } catch (error) {
-      setError("Failed to fetch product");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed fetch product";
+      setError(errorMessage);
     }
   },
 
@@ -76,8 +83,11 @@ export const useProductStore = create<ProductState>((set) => ({
       set((state) => ({
         all_products: [...state.all_products, response.data.data],
       }));
-    } catch (error) {
-      setError("Failed to create product");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed create product";
+      setError(errorMessage);
     }
   },
 
@@ -96,8 +106,11 @@ export const useProductStore = create<ProductState>((set) => ({
           product.id === id ? response.data.data : product
         ),
       }));
-    } catch (error) {
-      setError("Failed to update product");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed update product";
+      setError(errorMessage);
     }
   },
 
@@ -114,8 +127,11 @@ export const useProductStore = create<ProductState>((set) => ({
       set((state) => ({
         all_products: state.all_products.filter((product) => product.id !== id),
       }));
-    } catch (error) {
-      setError("Failed to delete product");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed delete product";
+      setError(errorMessage);
     }
   },
 
@@ -130,8 +146,11 @@ export const useProductStore = create<ProductState>((set) => ({
       });
 
       set({ all_products: [] });
-    } catch (error) {
-      setError("Failed to delete all products");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed delete all product";
+      setError(errorMessage);
     }
   },
 
@@ -148,8 +167,11 @@ export const useProductStore = create<ProductState>((set) => ({
       set((state) => ({
         all_products: state.all_products.filter((product) => product.id !== id),
       }));
-    } catch (error) {
-      setError("Failed to permanently delete product");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed destroy product";
+      setError(errorMessage);
     }
   },
 
@@ -164,8 +186,11 @@ export const useProductStore = create<ProductState>((set) => ({
       });
 
       set({ all_products: [] });
-    } catch (error) {
-      setError("Failed to permanently delete all products");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed destroy all product";
+      setError(errorMessage);
     }
   },
 
@@ -182,8 +207,11 @@ export const useProductStore = create<ProductState>((set) => ({
       set((state) => ({
         all_products: [...state.all_products, response.data.data],
       }));
-    } catch (error) {
-      setError("Failed to restore product");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed restore product";
+      setError(errorMessage);
     }
   },
 
@@ -198,8 +226,11 @@ export const useProductStore = create<ProductState>((set) => ({
       });
 
       set({ all_products: response.data.data });
-    } catch (error) {
-      setError("Failed to restore all products");
+    } catch (error: unknown) {
+      const errorMessage = axios.isAxiosError(error) && error.response?.data?.messages 
+        ? error.response.data.messages 
+        : "Failed restore all product";
+      setError(errorMessage);
     }
   },
 }));

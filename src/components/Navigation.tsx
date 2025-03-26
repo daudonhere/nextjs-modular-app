@@ -69,8 +69,10 @@ const Navigation: React.FC = () => {
   };
 
   const menuItems: MenuItemTypes[] = [
-    { name: "Module Setting", path: "/dashboard/module", icon: <Component color="#eeeef8" /> },
-    ...(isAdmin ? [{ name: "User Setting", path: "/dashboard/user", icon: <User2 color="#eeeef8" /> }] : []),
+    ...(isAdmin ? [
+        { name: "Module Setting", path: "/dashboard/module", icon: <Component color="#eeeef8" /> },
+        { name: "User Setting", path: "/dashboard/user", icon: <User2 color="#eeeef8" /> }
+      ] : []),
     isAuthenticated
       ? { name: "Logout", path: "logout", icon: <LogOut color="#eeeef8" />, action: handleLogout }
       : { name: "Login", path: "/login", icon: <LogIn color="#eeeef8" /> }
